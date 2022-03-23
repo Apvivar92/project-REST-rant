@@ -5,7 +5,7 @@ REST-rant is an app where users can review restaurants.
 ## Progression Checklist
 
 - ✅Part 1: Project setup, stub three routes, and creating a README file
-- Part 2: Stub remaining GET and POST routes, planning mock restaurant data, drawing wireframes, and making your first view
+- ✅Part 2: Stub remaining GET and POST routes, planning mock restaurant data, drawing wireframes, and making your first view
 - Part 3: Making more views, creating a layout page, and expanding your README
 - Part 4: Adding some style with CSS
 - Part 5: Forms, validation, and navigation
@@ -29,6 +29,8 @@ REST-rant is an app where users can review restaurants.
 - As a customer I need a page that shows all restaurants that have been reviewed so I see and/or update.
 - As a Critic I need a way to input my review of the restaurant and share for people to see.
 
+## Routes Table
+
 | Method | Path                     | Purpose                                          |
 | ------ | ------------------------ | ------------------------------------------------ |
 | GET    | /                        | Home Page                                        |
@@ -42,3 +44,16 @@ REST-rant is an app where users can review restaurants.
 | POST   | /places/:id/rant         | Create a rant (comment) about a particular place |
 | DELETE | /places/:id/rant/:rantld | Delete a rant (comment) about a particular place |
 | GET    | \*                       | 404 page (matches any route not defined above)   |
+
+## Data to store places
+
+### Places
+
+| Input    | Type    |
+| -------- | ------- |
+| Name     | String  |
+| City     | String  |
+| City     | String  |
+| State    | String  |
+| Cuisines | Strings |
+| Pictures | Strings |
