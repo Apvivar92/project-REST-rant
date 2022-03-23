@@ -1,5 +1,5 @@
 // Import React
-const React = require('react')
+const React = require('react');
 
 // Create stub function that has a parameter called 'html'
 function Def (html) {
@@ -14,7 +14,7 @@ function Def (html) {
           </body>
       </html>
     )
-}
+};
 
 // Export the Def()
-module.exports = Def
+module.exports = Def;
