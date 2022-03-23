@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
   // .status(404) linked to .send to call status response
   // .send sends message to page
-  res.status(404).send('<h1>404 Page</h1>')
+  res.render('error404')
 });
 
 app.listen(process.env.PORT);
