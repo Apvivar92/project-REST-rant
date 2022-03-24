@@ -1,20 +1,22 @@
-
+// Dependencies
 require('dotenv').config();
 const express = require('express');
 const app = express();
 
-// Defines the view engine (JSX)
+// Settings
+app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
+app.use(express.static('public'))
 
+// Middleware
 // code to import the router in'places.js'
 // .use('sets all routes after /places controller,)
 app.use('/places', require('./controllers/places'));
 
 // homepage route path
 app.get('/', (req, res) => {
-  // With .render() it already knows to look for 'views' folder.
-  res.render('home')
+  res.render('home') // With .render() it already knows to look for 'views' folder.
 });
 
 // make wild card route path. (invalid address)
