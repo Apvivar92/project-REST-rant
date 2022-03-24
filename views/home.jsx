@@ -11,6 +11,12 @@ function home() {
     <Def>
       <main>
         <h1>HOME</h1>
+        <div>
+          <img src="/images/ria-quartz-FehgLAdvF4Y-unsplash.jpg" alt="Panini"/>
+          <div>
+            Photo by <a href="https://unsplash.com/photos/FehgLAdvF4Y">Ria Quartz</a> on <a href="https://unsplash.com/s/photos/free-food">Unsplash</a>
+          </div>
+        </div>
         <a href="/places">
           <button className="btn-primary">Places Page</button>
         </a>
