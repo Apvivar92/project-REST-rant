@@ -2,29 +2,25 @@ const { route } = require('express/lib/application');
 
 // Add code to create and export an express.Route()
 const router = require('express').Router()
+const places = require('../models/places.js')
 
 // Create first route. Will be used in index.js (GET route that will show a list of all places)
 router.get('/', (req, res) => {
-  let places = [{
-    name: 'H-Thai-ML',
-    city: 'Seattle',
-    state: 'WA',
-    cuisines: 'Thai, Pan-Asian',
-    pic: 'public/css/images/emy-XoByiBymX20-unsplash.jpg'
-  }, 
-  {
-    name: 'Coding Cat Cafe',
-    city: 'Phoenix',
-    state: 'AZ',
-    cuisines: 'Coffee, Bakery',
-    pic: 'public/css/images/nathan-dumlao-zUNs99PGDg0-unsplash.jpg'
-  }]
-  // res.render('places/new');
   res.render('places/index', {places});
 })
 
 router.post('/', (req, res) => {
   console.log(req.body)
+  if (!req.body.pic) {
+    req.body.pic = 'http://placekitten.com/400/400'// Default image if one is not provided
+  }
+  if (!req.body.city) {
+    req.body.city = 'Anytown'
+  }
+  if (!req.body.state) {
+    req.body.state = 'USA'
+  }
+  places.push(req.body)
   res.send('POST /places')
 })
 
