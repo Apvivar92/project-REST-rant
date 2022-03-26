@@ -23,8 +23,9 @@ router.get('/', (req, res) => {
   res.render('places/index', {places});
 })
 
-router.post('/', (req,res) => {
-  res.send('<h1>some html<h1>');
+router.post('/', (req, res) => {
+  console.log(req.body)
+  res.send('POST /places')
 })
 
 router.get('/new', (req, res) => {
