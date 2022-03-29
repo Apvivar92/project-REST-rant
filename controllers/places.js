@@ -1,5 +1,3 @@
-const { route } = require('express/lib/application');
-
 // Add code to create and export an express.Route()
 const router = require('express').Router()
 const places = require('../models/places.js')
@@ -41,14 +39,52 @@ router.get('/:id', (req, res) => {
   }
 })
 
-// router.get('/:id', (req,res) => {
-//   let myId = req.params.id;
-//   res.send('Details for ${myId}');
-// })
+router.get('/:id/edit', (req,res) => {
+  let id = req.params.id;
+  if(isNaN(id)){
+      res.render('error404')
+  } 
+  else if (!places[id]){
+      res.render('error404')
+  } 
+  else {
+      res.render('places/edit', {place: places[id], id})
+  }
+});
 
-// router.get('/:id/edit', (req,res) => {
-//   let myId = req.params.id;
-//   res.send('Edit page for ${myId');
-// })
+router.put('/:id', (req,res) => {
+  let id = Number(req.params.id)
+  if(isNaN(id)){
+      res.render('error404')
+  } else if (!places[id]) {
+      res.render('error404')
+  } else {
+      if(!req.body.pic) {
+          req.body.pic = "http://placekitten.com/400/400"
+      } 
+      if(!req.body.city){
+          req.body.city = 'Anytown'
+      }
+      if(!req.body.state){
+          req.body.state = 'USA'
+      }
 
+      places[id] = req.body
+      res.redirect(`/places/${id}`)
+  }
+})
+
+router.delete('/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else {
+      places.splice(id, 1)
+      res.redirect('/places')
+  }
+})
 module.exports = router

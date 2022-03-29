@@ -11,11 +11,11 @@ function index (data) {
               {place.name}
               </a>
             </h2>
-            <p clasName="text-center">
+            <p className="text-center">
               {place.cuisines}
             </p>
             <img src={place.pic} alt={place.name} />
-            <p clasName="text-center">
+            <p className="text-center">
               Located in {place.city}, {place.state}
             </p>
           </div>

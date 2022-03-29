@@ -26,7 +26,6 @@ app.get('/', (req, res) => {
 // (make sure it's place at bottom otherwise page will be override other pages)
 app.get('*', (req, res) => {
   // .status(404) linked to .send to call status response
-  // .send sends message to page
   res.render('error404')
 });
 
