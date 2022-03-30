@@ -48,6 +48,7 @@ router.get("/:id/edit", (req, res) => {
   }
 });
 
+// req.body.input = what user enters
 router.put("/:id", (req, res) => {
   let id = Number(req.params.id);
   if (isNaN(id)) {
@@ -64,7 +65,7 @@ router.put("/:id", (req, res) => {
     if (!req.body.state) {
       req.body.state = "USA";
     }
-
+    // Save the new data into places [id]
     places[id] = req.body;
     res.redirect(`/places/${id}`);
   }
@@ -81,4 +82,5 @@ router.delete("/:id", (req, res) => {
     res.redirect("/places");
   }
 });
+
 module.exports = router;
