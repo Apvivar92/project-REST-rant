@@ -25,5 +25,10 @@ const placeSchema = new mongoose.Schema({
   founded: Number,
 });
 
+// showEstablished() to combine everything within placeSchema
+placeSchema.methods.showEstablished = function () {
+  return `${this.name} has been serving ${this.city}, ${this.state} since ${this.founded}.`;
+};
+
 // Export
 module.exports = mongoose.model("Place", placeSchema);
