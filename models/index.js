@@ -11,3 +11,4 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Adds access to all of our models
 module.exports.Place = require("./places");
+module.exports.Comment = require("./comment");
