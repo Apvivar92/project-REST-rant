@@ -1,18 +1,13 @@
 // Add code to create and export an express.Route()
 const router = require("express").Router();
-
-// Reference to models folder
+const places = require("../models/places.js");
+const comments = require("../models/comment.js");
 const db = require("../models");
-const { findById } = require("../models/places.js");
 
-// Route pages
-
-// Default Page
 router.get("/", (req, res) => {
   db.Place.find()
-    // Render index page
     .then((places) => {
-      res.render("places/index", { places });
+      res.render("places/index", { places }); // Render index page
     })
     // to catch any errors
     .catch((err) => {
@@ -81,15 +76,35 @@ router.post("/:id/comment", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-  res.send("PUT /places/:id stub");
+  db.Place.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      res.redirect(`/places/${req.params.id}`);
+    })
+    .catch((err) => {
+      console.log("err", err);
+      res.render("error404");
+    });
 });
 
 router.delete("/:id", (req, res) => {
-  res.send("DELETE /places/:id stub");
+  db.Place.findByIdAndDelete(req.params.id)
+    .then((place) => {
+      res.redirect("/places");
+    })
+    .catch((err) => {
+      console.log("err", err);
+      res.render("error404");
+    });
 });
 
 router.get("/:id/edit", (req, res) => {
-  res.send("GET edit form stub");
+  db.Place.findById(req.params.id)
+    .then((place) => {
+      res.render("places/edit", { place });
+    })
+    .catch((err) => {
+      res.render("error404");
+    });
 });
 
 router.post("/:id/rant", (req, res) => {
@@ -101,3 +116,22 @@ router.delete("/:id/rant/:rantId", (req, res) => {
 });
 
 module.exports = router;
+
+// router.get("/rand", (req, res) => {
+//   db.Place.find().then((places) => {
+//     res.render(
+//       "places/edit",
+//       places[Math.floor(Math.random() * places.length)]
+//     );
+//   });
+//   // res.send(Math.floor(Math.random() * 5).toString());
+// });
+
+// router.get("/secret", (req, res) => {
+//   res.send("Tonys actual favorite color is blue");
+// });
+
+// router.post("/tony", (req, res) => {
+//   const content = req.body;
+//   res.send("Tony's favorite color is " + content.data);
+// });
